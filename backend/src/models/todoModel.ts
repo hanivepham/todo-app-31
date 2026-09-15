@@ -12,5 +12,13 @@ export const TodoModel = {
             [userId, task]
         );
         return result.insertId;
+    },
+
+    delete: async (userId: number, id: number) => {
+        const [result]: any = await pool.query(
+            'DELETE FROM todos WHERE id = ? AND user_id = ?',
+            [id, userId]
+        );
+        return result.affectedRows;
     }
 };
